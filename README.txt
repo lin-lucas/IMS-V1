@@ -1,4 +1,10 @@
 仓储物品管理系统V1.8.1 使用说明
+0. 版权声明
+Item Management Systen(IMS) V1.8.1
+Copyright © 2025 zhilin.tang@qq.com. All rights reserved.
+仓储物品管理系统（IMS）V1.8.1
+版权所有 © 2025 zhilin.tang@qq.com. 保留所有权利。
+此文档为IMS V1.8.1使用说明，适用于Windows系统。
 1. 项目路径
 ROOT
 \---仓储物品管理系统V1.8.1
