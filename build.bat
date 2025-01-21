@@ -1,1 +1,1 @@
-pyinstaller -i "ICON-128.ico" --add-data "src\lang:lang" --distpath ".\Program" "src\__init__.py"
+pyinstaller -i "ICON-128.ico" --add-data "src\lang:lang" --distpath ".\Program" "src\IMS.py"
