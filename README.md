@@ -6,12 +6,12 @@ Copyright © 2025 zhilin.tang@qq.com. All rights reserved.<br>
 版权所有 © 2025 zhilin.tang@qq.com. 保留所有权利。<br>
 此文档为 IMS V1.8.1使用说明，适用于Windows系统。
 ## 2. 使用方法
-### 1. [点击此处](https://github.com/lin-lucas/IMS-V1/仓储物品管理系统V1.8.1.zip)下载最新版
+### 1. [点击此处](https://github.com/lin-lucas/IMS-V1/IMS V1.8.1.zip)下载最新版
 ### 2. 解压到任意目录
 ### 3. 阅读下面几条提示
 #### 1. 项目路径
 ROOT
-\\---仓储物品管理系统V1.8.1
+\\---IMS V1.8.1
     |   IMS.exe
     |
     \\---_internal
