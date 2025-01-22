@@ -257,6 +257,7 @@ def main():
                     query(index)
             
             case 'clear' | 'cls':
+                log('清屏。')
                 os.system('cls')
 
             case 'display' | 'd' | 'dis':
