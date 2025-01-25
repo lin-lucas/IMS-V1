@@ -1,6 +1,4 @@
-#!python3
-
-__version__ = '1.8.1'
+__version__ = "1.8.1"
 TIPS_INFO = f'''Item Management System(IMS) V{__version__}
 Made by zhilin.tang@qq.com
 
@@ -10,12 +8,14 @@ Made by zhilin.tang@qq.com
 from pathlib import Path
 import json
 import os
-import bcrypt
 from datetime import datetime
 from time import time
 
 rootPath = Path(__file__).parent
-things = {}
+things: dict = {}
+user: str = ''
+FILE: dict = {}
+START: float = 0
 
 def initLog():
     global START
@@ -110,12 +110,12 @@ def display():
         print('无物品。')
         return
     else:
-        print('------------')
+        print('-'*20)
         for index in things.keys():
             print(index)
             for value in things[index].keys():
                 print(f'    {value}*{things[index][value]}')
-            print('------------')
+            print('-'*20)
         print(f'共 {sum(sum(things[i].values()) for i in things.keys())} 个物品在 {len(things)} 个索引中。')
 
 def login(usr:str, psw:str, num:int=3):
