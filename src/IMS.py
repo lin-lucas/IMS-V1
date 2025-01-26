@@ -1,4 +1,4 @@
-__version__ = "1.8.1"
+__version__ = "1.8.2"
 TIPS_INFO = f'''Item Management System(IMS) V{__version__}
 Made by zhilin.tang@qq.com
 
@@ -11,11 +11,12 @@ import os
 from datetime import datetime
 from time import time
 
-rootPath = Path(__file__).parent
-things: dict = {}
-user: str = ''
-FILE: dict = {}
-START: float = 0
+rootPath: Path = Path(__file__).parent
+things: dict
+LANG: dict
+user: str
+FILE: dict
+START: float
 
 def initLog():
     global START
@@ -28,6 +29,11 @@ def log(log:str):
     elapsed = int((current - START) * 1000)
     with open(rootPath / 'logs.log', 'a', encoding='utf-8') as file:
         file.write(f"[{elapsed} ms] {log}\n")
+
+def loadLang(lang: str):
+    global LANG
+    with open(rootPath / f'lang/{lang}.json', 'r', encoding='utf-8') as file:
+        LANG = json.load(file)
 
 def readInfo():
     global FILE, things, user
@@ -154,29 +160,29 @@ def login(usr:str, psw:str, num:int=3):
 
 def logister():
     global FILE, user
-    print('请选择([l]登录 / [r]注册 / [e]退出)：')
+    print(LANG["loginInfo0"])
     choice = input('>>> ')
     match choice.lower():
         case 'l' | 'login':
             log('开始登录。')
-            usr = input('用户名：')
-            psw = input('密码：')
+            usr = input(LANG["loginInfo1"])
+            psw = input(LANG["loginInfo2"])
             user = usr
             login(usr, psw)
             return
         case 'r' |'register':
             log('开始注册。')
-            usr = input('用户名：')
+            usr = input(LANG["regiInfo0"])
             with open(rootPath / 'users.json') as file:
                 FILE = json.load(file)
             if usr.lower() in (i.lower() for i in FILE.keys()):
-                print('用户名已存在。')
+                print(LANG["regiInfo4"])
                 logister()
             else:
-                psw = input('密码：')
-                confirm_psw = input('确认密码：')
+                psw = input(LANG["regiInfo1"])
+                confirm_psw = input(LANG["regiInfo2"])
                 if psw!= confirm_psw:
-                    print('两次密码不匹配。')
+                    print(LANG["regiInfo5"])
                     log('注册失败。')
                     logister()
                 else:
@@ -205,6 +211,23 @@ def main():
         log('用户数据文件不存在，正在创建。')
         with open(rootPath / 'users.json', 'w') as file:
             json.dump({}, file, indent=4, sort_keys=True)
+            log('用户数据文件创建成功。')
+    log('开始获取语言。')
+    lang = input('''请选择语言([E]英文 / [C]中文)
+Please select language([E]nglish / [C]hinese)
+>>> ''')
+    match lang.lower():
+        case 'e' | 'english':
+            log('使用英文。')
+            loadLang('en_us')
+        case 'c' | 'chinese':
+            log('使用中文。')
+            loadLang('zh_cn')
+        case _:
+            print('输入不合法。')
+            log('程序退出。')
+            exit()
+    log('语言加载成功。')
     logister()
     readInfo()
     log('数据文件加载。')

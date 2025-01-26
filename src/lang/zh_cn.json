@@ -1,0 +1,11 @@
+{
+    "welcomeInfo0":"仓储物品管理系统(物品管家) V{0}\n作者：zhilin.tang@qq.com",
+    "loginInfo0":"请选择([l]登录 / [r]注册 / [e]退出)：",
+    "loginInfo1":"用户名：",
+    "loginInfo2":"密码：",
+    "regiInfo0":"用户名：",
+    "regiInfo1":"密码：",
+    "regiInfo2":"确认密码：",
+    "regiInfo4":"用户名已存在。",
+    "regiInfo5":"两次密码不匹配。"
+}

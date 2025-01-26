@@ -1,0 +1,11 @@
+{
+    "welcomeInfo0":"Item Management System(IMS) V{0}\nMade by zhilin.tang@qq.com",
+    "loginInfo0":"Please choose ([l]ogin / [r]egister / [e]xit): ",
+    "loginInfo1":"Username: ",
+    "loginInfo2":"Password: ",
+    "regiInfo0":"Username: ",
+    "regiInfo1":"Password: ",
+    "regiInfo2":"Confirm password: ",
+    "regiInfo4":"Username already exists.",
+    "regiInfo5":"Passwords do not match."
+}
