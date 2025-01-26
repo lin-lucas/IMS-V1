@@ -24,11 +24,11 @@ def initLog():
     with open(rootPath / 'logs.log', 'w', encoding='utf-8') as file:
         file.write(f'程序在 {datetime.now().strftime("%Y-%m-%d %H:%M:%S")} 启动。\n')
 
-def log(log:str):
+def log(log:str, level:str='info'):
     current = time()
     elapsed = int((current - START) * 1000)
     with open(rootPath / 'logs.log', 'a', encoding='utf-8') as file:
-        file.write(f"[{elapsed} ms] {log}\n")
+        file.write(f"[{elapsed} ms] [{level.upper()}] {log}\n")
 
 def loadLang(lang: str):
     global LANG
@@ -108,7 +108,7 @@ def query(index):
         print('-'*20)
     else:
         print(f'索引 "{index}" 不存在。')
-        log('无结果。')
+        log('索引不存在。','warn')
 
 def display():
     global things
@@ -124,7 +124,7 @@ def display():
             print('-'*20)
         print(f'共 {sum(sum(things[i].values()) for i in things.keys())} 个物品在 {len(things)} 个索引中。')
 
-def login(usr:str, psw:str, num:int=3):
+def login(usr:str, psw:str, num:int=2):
     log(f'用户 {usr} 想要登录。')
     with open(rootPath / 'users.json') as file:
         users:dict = json.loads(file.read())
@@ -138,20 +138,20 @@ def login(usr:str, psw:str, num:int=3):
             return
         else:
             if num == 0:
-                log(f'用户 {usr} 尝试3次，登录失败。')
+                log(f'登录失败。','warn')
                 print('尝试太多次了！')
-                log('程序退出。')
+                log('程序退出。','warn')
                 exit()
-            log(f'用户 {usr} 尝试 {num} 次，登录失败。')
+            log(f'登录失败。','warn')
             print('用户名或密码错误。')
             usr = input('用户名：')
             psw = input('密码：')
             login(usr, psw, num-1)      
     else:
         if num == 0:
-                log(f'用户 {usr} 尝试3次，登录失败。')
+                log(f'用户 {usr} 尝试3次，登录失败。','warn')
                 print('尝试太多次了！')
-                log('程序退出。')
+                log('程序退出。','warn')
                 exit()
         print('用户名或密码错误。')
         usr = input('用户名：')
@@ -183,7 +183,7 @@ def logister():
                 confirm_psw = input(LANG["regiInfo2"])
                 if psw!= confirm_psw:
                     print(LANG["regiInfo5"])
-                    log('注册失败。')
+                    log('注册失败。','warn')
                     logister()
                 else:
                     FILE[usr] = {"password": psw, "things": {}}
@@ -208,7 +208,7 @@ def main():
         with open(rootPath / 'users.json'):
             pass
     except FileNotFoundError:
-        log('用户数据文件不存在，正在创建。')
+        log('用户数据文件不存在，正在创建。','warn')
         with open(rootPath / 'users.json', 'w') as file:
             json.dump({}, file, indent=4, sort_keys=True)
             log('用户数据文件创建成功。')
@@ -225,7 +225,7 @@ Please select language([E]nglish / [C]hinese)
             loadLang('zh_cn')
         case _:
             print('输入不合法。')
-            log('程序退出。')
+            log('程序退出。','warn')
             exit()
     log('语言加载成功。')
     logister()
