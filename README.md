@@ -10,15 +10,17 @@ Copyright © 2025 zhilin.tang@qq.com. All rights reserved.<br>
 ### 2. 解压到任意目录
 ### 3. 阅读下面几条提示
 #### 1. 项目路径
-{ROOT}<br>
-\\---IMS V1.8.1<br>
-    |---IMS.exe<br>
-    |<br>
-    \\---_internal<br>
-        |<br> 
-        \\---lang<br>
-               |---en_us.json<br>
-               |---zh_cn.json<br>
+```
+{ROOT}
+\---IMS V1.8.1
+    |---IMS.exe
+    |
+    \---_internal
+        |
+        \---lang
+               |---en_us.json
+               |---zh_cn.json
+```
 **说明：**
 - `{ROOT}`为项目根目录
 - `IMS.exe`为程序运行文件（想运行就点它）
